@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+
   </div>
 </template>
 
@@ -17,7 +17,5 @@ export default {
 </script>
 
 <style>
-  .home {
-    background-color: black;
-  }
+
 </style>

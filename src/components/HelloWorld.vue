@@ -1,6 +1,5 @@
 <template>
   <div class="hello">
-    <MenuButton />
   </div>
 </template>
 

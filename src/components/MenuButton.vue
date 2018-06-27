@@ -16,20 +16,20 @@
 
 <script>
 import { TimelineLite, TweenLite } from 'gsap'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'MenuButton',
   data() {
       return {
           timeline: null,
-          isClicked: false
       }
   },
     methods: {
         onClickMenuButton: function () {
-            this.isClicked = !this.isClicked
+            this.toggleMenu()
             // displaying menu
-            if (this.isClicked) {
+            if (this.isMenuClicked) {
 
                 // do reverse
                 // this.timeline.progress(1)
@@ -40,18 +40,15 @@ export default {
             // displaying X
 
               this.timeline.play()
-            }
+        }
+
         
       },
-      foo: function (e) {
-                      if (this.isClicked) {
-
-          console.log('what')
-                // this.timeline.play()
-                      }
-
-}
+     ...mapActions(['toggleMenu'])
   },
+computed: mapGetters([
+    'isMenuClicked'
+  ]),
   mounted() {
       const children = this.$refs.menuButton.children
     this.timeline = new TimelineLite()
@@ -60,7 +57,6 @@ export default {
 
     for (let index = 0; index < children.length; index++) {
         const p = children[index];
-        console.log(this.$refs)
         for (let i = 0; i < p.children.length; i++) {
             const span = p.children[i];
             if (span.className === "close-menu") {
@@ -71,14 +67,8 @@ export default {
         
     }
 
-    // this.timeline.eventCallback('onComplete', this.foo)
-    // this.timeline.pause()
     this.timeline.play()
-    // button.children.forEach((p) => {
-    //     childrenforEach((span) => {
-    //         this.timeline.add( TweenLite.to(span, 1, { left: -100 }) )
-    //     })
-    // })
+
   }
 }
 </script>
@@ -103,6 +93,7 @@ export default {
         outline: none;
         transition: border .2s linear;
         cursor: pointer;
+        z-index: 9;
     }
 
     .close-menu {
@@ -113,7 +104,6 @@ export default {
         left: 0;
         right: 0;
         margin: auto;
-        background-color: black;
         letter-spacing: initial;
         font-weight: 300;
         padding-top: 5px;

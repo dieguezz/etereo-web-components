@@ -27,8 +27,11 @@ export default {
       console.log('mounted')
       const menu = this.$refs.menu
       this.timeline = new TimelineLite()
-      this.timeline.add( TweenLite.from(menu, .55, { width: 0, opacity: 0, ease: Power1.easeIn }))
-      this.timeline.add( TweenLite.from(menu, .75, { height: 0, ease: Power3.easeOut }))
+      this.timeline.add( TweenLite.from(menu, .25, { width: 0, opacity: 0, ease: Power1.easeOut }))
+      this.timeline.add( TweenLite.to(menu, .25, { opacity: 1, ease: Power1.easeIn }))
+      this.timeline.add( TweenLite.to(menu, .1, { opacity: 0, ease: Power1.easeIn }))
+      this.timeline.add( TweenLite.to(menu, .1, { opacity: 1, ease: Power1.easeIn }))
+      this.timeline.add( TweenLite.from(menu, .35, { height: 0, ease: Power3.easeOut }))
       this.timeline.pause()
   },
 
